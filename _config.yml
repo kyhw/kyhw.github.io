@@ -12,24 +12,17 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
 
-# Collections Setup
 collections:
   notes:
     output: true
-    permalink: /:collection/:path/
+    permalink: /notes/:title/
 
-# Defaults
 defaults:
-  - scope:
-      path: "" # all files
-    values:
-      layout: "default"
   - scope:
       path: ""
       type: "notes"
     values:
       layout: "note"
-      show_in_nav: false
 
 # Exclude List
 exclude:

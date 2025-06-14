@@ -1,17 +1,17 @@
 ---
 layout: default
 ---
-<article>
-  {% if page.title %}
+<article class="note">
+  <header>
     <h1>{{ page.title }}</h1>
-    <time datetime="{{ page.date }}">{{ page.date | date: "%B %d, %Y" }}</time>
-    <div class="note-content">
-      {{ content }}
+    <div class="note-date">
+      {{ page.date | date: "%B %d, %Y" }}
     </div>
-  {% else %}
-    <div class="error">
-      <p>Note content couldn't be loaded.</p>
-      <a href="{{ site.baseurl }}/notes/">Back to all notes</a>
-    </div>
-  {% endif %}
+  </header>
+  
+  <div class="note-content">
+    {{ content }}
+  </div>
+  
+  <a href="{{ '/notes/' | relative_url }}" class="back-link">← Back to all notes</a>
 </article>

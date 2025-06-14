@@ -1,0 +1,27 @@
+---
+layout: default
+title: My Learning Notes
+permalink: /notes/
+---
+
+<main class="container">
+  <h1>{{ page.title }}</h1>
+  
+  <div class="notes-list">
+    {% assign sorted_notes = site.notes | sort: 'date' | reverse %}
+    {% for note in sorted_notes %}
+      <article class="note-card">
+        <h2><a href="{{ note.url | relative_url }}">{{ note.title }}</a></h2>
+        <div class="note-meta">
+          <time datetime="{{ note.date | date_to_xmlschema }}">
+            {{ note.date | date: "%B %d, %Y" }}
+          </time>
+        </div>
+        <div class="note-excerpt">
+          {{ note.content | strip_html | truncatewords: 30 }}
+        </div>
+        <a href="{{ note.url | relative_url }}" class="read-more">Read more →</a>
+      </article>
+    {% endfor %}
+  </div>
+</main>
