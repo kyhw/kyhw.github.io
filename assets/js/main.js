@@ -47,29 +47,25 @@ function loadAllNotes() {
 // Function to fetch notes from the notes directory
 async function fetchNotes() {
     try {
-        // In a real implementation, you would fetch this from your GitHub repo
-        // For now, we'll simulate with some example notes
         return [
             {
-                title: "Learning React Hooks",
+                title: "Installing Arch Linux on Macbook Air 2019",
+                date: "June 7, 2025",
+                excerpt: "I might have made a mistake...",
+                filename: "250607.md"
+            },
+            {
+                title: "Fixing Arch Linux on my Macbook",
                 date: "June 10, 2023",
-                excerpt: "Today I explored the useState and useEffect hooks in React...",
-                filename: "react-hooks.md"
-            },
-            /*
-            {
-                title: "CSS Grid Deep Dive",
-                date: "June 8, 2023",
-                excerpt: "Spent the day mastering CSS Grid layout techniques...",
-                filename: "css-grid.md"
+                excerpt: "Spent the day trying to fix my laptop...",
+                filename: "250610.md"
             },
             {
-                title: "JavaScript Closures",
-                date: "June 5, 2023",
-                excerpt: "Finally understood how closures work in JavaScript...",
-                filename: "js-closures.md"
+                title: "Making this website",
+                date: "June 14, 2023",
+                excerpt: "AI really made it easy...",
+                filename: "250614.md"
             }
-            */
         ];
     } catch (error) {
         console.error("Error fetching notes:", error);
