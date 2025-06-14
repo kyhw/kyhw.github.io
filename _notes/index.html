@@ -22,7 +22,23 @@
 
     <main class="container">
         <h1>My Learning Notes</h1>
-        <div class="notes-list" id="allNotes"></div>
+
+        <div class="notes-list">
+        {% for note in site.notes %}
+            <div class="note-item">
+            <h3>
+                <a href="{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a>
+            </h3>
+            <div class="note-date">
+                {{ note.date | date: "%B %d, %Y" }}
+            </div>
+            <div class="note-excerpt">
+                {{ note.content | strip_html | truncatewords: 30 }}
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+
     </main>
 
     <footer>

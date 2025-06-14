@@ -47,22 +47,19 @@ function loadAllNotes() {
 // Function to fetch notes from the notes directory
 async function fetchNotes() {
     try {
-        // For Jekyll collections
-        const response = await fetch('{{ site.baseurl }}/notes.json');
-        if (!response.ok) return [];
-        const data = await response.json();
-        return data.map(note => ({
-            title: note.title,
-            date: new Date(note.date).toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            }),
+        const response = await fetch('/notes.json');
+        if (!response.ok) throw new Error('Network error');
+        const notes = await response.json();
+        
+        // Process notes for display
+        return notes.map(note => ({
+            title: note.title || 'Untitled',
+            date: new Date(note.date).toLocaleDateString(),
             url: note.url,
-            excerpt: note.excerpt || ''
+            excerpt: note.content.substring(0, 100) + '...' // First 100 chars
         }));
     } catch (error) {
-        console.error("Error fetching notes:", error);
+        console.error("Error loading notes:", error);
         return [];
     }
 }

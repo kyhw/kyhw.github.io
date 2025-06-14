@@ -1,17 +1,17 @@
 ---
 layout: default
 ---
-<article class="note-content">
-  <header>
+<article>
+  {% if page.title %}
     <h1>{{ page.title }}</h1>
-    <div class="note-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}">
-        {{ page.date | date: "%B %d, %Y" }}
-      </time>
+    <time datetime="{{ page.date }}">{{ page.date | date: "%B %d, %Y" }}</time>
+    <div class="note-content">
+      {{ content }}
     </div>
-  </header>
-  
-  <div class="note-body">
-    {{ content }}
-  </div>
+  {% else %}
+    <div class="error">
+      <p>Note content couldn't be loaded.</p>
+      <a href="{{ site.baseurl }}/notes/">Back to all notes</a>
+    </div>
+  {% endif %}
 </article>
