@@ -462,3 +462,71 @@ footer p {
   color: var(--accent-purple);
   text-decoration: underline;
 }
+
+/* Recent Notes Section */
+.recent-notes {
+    margin: 3rem 0;
+}
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.note-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: var(--transition);
+}
+
+.note-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.note-meta {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.note-excerpt {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.read-more {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+}
+
+.read-more:hover {
+    color: var(--accent-purple);
+}
+
+.read-more i {
+    margin-left: 5px;
+    transition: transform 0.2s ease;
+}
+
+.read-more:hover i {
+    transform: translateX(3px);
+}
+
+/* Loading and Error States */
+.loading, .error {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+}
+
+.error {
+    color: #ff6b6b;
+}

@@ -1,71 +1,65 @@
-// Update copyright year
+// Set copyright year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Function to load recent notes on homepage
-function loadRecentNotes() {
-    if (document.getElementById('recentNotes')) {
-        fetchNotes().then(notes => {
-            const recentNotesContainer = document.getElementById('recentNotes');
-            const recentNotes = notes.slice(0, 3); // Get 3 most recent notes
-            
-            recentNotes.forEach(note => {
-                const noteCard = document.createElement('div');
-                noteCard.className = 'note-card';
-                noteCard.innerHTML = `
-                    <h3>${note.title}</h3>
-                    <div class="note-date">${note.date}</div>
-                    <div class="note-excerpt">${note.excerpt}</div>
-                    <a href="notes/${note.filename}" class="read-more">
-                        Read more <i class="fas fa-arrow-right"></i>
-                    </a>
-                `;
-                recentNotesContainer.appendChild(noteCard);
-            });
-        });
-    }
-}
+// Load and display recent notes
+async function loadRecentNotes() {
+    const notesContainer = document.getElementById('recentNotes');
+    if (!notesContainer) return;
 
-// Function to load all notes in notes page
-function loadAllNotes() {
-    if (document.getElementById('allNotes')) {
-        fetchNotes().then(notes => {
-            const allNotesContainer = document.getElementById('allNotes');
-            
-            notes.forEach(note => {
-                const noteItem = document.createElement('div');
-                noteItem.className = 'note-item';
-                noteItem.innerHTML = `
-                    <h3><a href="${note.filename}">${note.title}</a></h3>
-                    <div class="note-date">${note.date}</div>
-                `;
-                allNotesContainer.appendChild(noteItem);
-            });
-        });
-    }
-}
+    // Show loading state
+    notesContainer.innerHTML = '<p class="loading">Loading recent notes...</p>';
 
-// Function to fetch notes from the notes directory
-async function fetchNotes() {
     try {
+        // Fetch notes data
         const response = await fetch('/notes.json');
-        if (!response.ok) throw new Error('Network error');
+        if (!response.ok) throw new Error('Network response was not ok');
+        
         const notes = await response.json();
         
-        // Process notes for display
-        return notes.map(note => ({
-            title: note.title || 'Untitled',
-            date: new Date(note.date).toLocaleDateString(),
-            url: note.url,
-            excerpt: note.content.substring(0, 100) + '...' // First 100 chars
-        }));
+        // Process and display notes
+        if (notes.length > 0) {
+            notesContainer.innerHTML = notes
+                .slice(0, 3) // Get 3 most recent
+                .map(note => `
+                    <div class="note-card">
+                        <h3><a href="${note.url}">${note.title}</a></h3>
+                        <div class="note-meta">
+                            <time datetime="${note.date}">
+                                ${new Date(note.date).toLocaleDateString('en-US', { 
+                                    month: 'long', 
+                                    day: 'numeric', 
+                                    year: 'numeric'
+                                })}
+                            </time>
+                        </div>
+                        <div class="note-excerpt">${note.excerpt}</div>
+                        <a href="${note.url}" class="read-more">
+                            Read more <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                `)
+                .join('');
+        } else {
+            notesContainer.innerHTML = '<p>No notes found.</p>';
+        }
     } catch (error) {
-        console.error("Error loading notes:", error);
-        return [];
+        console.error('Error loading notes:', error);
+        notesContainer.innerHTML = `
+            <p class="error">Failed to load notes. 
+            <a href="/notes/">View all notes</a></p>
+        `;
     }
 }
 
-// Initialize functions based on current page
+// Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {
     loadRecentNotes();
-    loadAllNotes();
+    
+    // Set active navigation link
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+        }
+    });
 });
