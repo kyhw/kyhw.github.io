@@ -16,9 +16,7 @@ plugins:
 collections:
   notes:
     output: true
-    permalink: /notes/:name/
-    sort_by: date
-    sort_direction: reverse
+    permalink: /:collection/:path/
 
 # Defaults
 defaults:
