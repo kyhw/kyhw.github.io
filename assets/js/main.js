@@ -47,26 +47,12 @@ function loadAllNotes() {
 // Function to fetch notes from the notes directory
 async function fetchNotes() {
     try {
-        return [
-            {
-                title: "Installing Arch Linux on Macbook Air 2019",
-                date: "June 7, 2025",
-                excerpt: "I might have made a mistake...",
-                filename: "250607.md"
-            },
-            {
-                title: "Fixing Arch Linux on my Macbook",
-                date: "June 10, 2023",
-                excerpt: "Spent the day trying to fix my laptop...",
-                filename: "250610.md"
-            },
-            {
-                title: "Making this website",
-                date: "June 14, 2023",
-                excerpt: "AI really made it easy...",
-                filename: "250614.md"
-            }
-        ];
+        // This assumes you have a notes.json file that Jekyll will generate
+        const response = await fetch('/notes/notes.json');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return await response.json();
     } catch (error) {
         console.error("Error fetching notes:", error);
         return [];

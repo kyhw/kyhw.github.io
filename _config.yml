@@ -3,6 +3,9 @@ description: My personal website
 theme: jekyll-theme-cayman
 plugins:
   - jekyll-feed
+  - jekyll-remote-include
 exclude:
   - Gemfile
   - Gemfile.lock
+markdown: kramdown
+include: ['_pages', 'notes']
