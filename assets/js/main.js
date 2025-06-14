@@ -56,6 +56,7 @@ async function fetchNotes() {
                 excerpt: "Today I explored the useState and useEffect hooks in React...",
                 filename: "react-hooks.md"
             },
+            /*
             {
                 title: "CSS Grid Deep Dive",
                 date: "June 8, 2023",
@@ -68,6 +69,7 @@ async function fetchNotes() {
                 excerpt: "Finally understood how closures work in JavaScript...",
                 filename: "js-closures.md"
             }
+            */
         ];
     } catch (error) {
         console.error("Error fetching notes:", error);
