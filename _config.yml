@@ -1,0 +1,8 @@
+title: Your Name
+description: Your personal website
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-feed
+exclude:
+  - Gemfile
+  - Gemfile.lock
