@@ -48,7 +48,7 @@ function loadAllNotes() {
 async function fetchNotes() {
     try {
         // For Jekyll collections
-        const response = await fetch('/notes.json');
+        const response = await fetch('{{ site.baseurl }}/notes.json');
         if (!response.ok) return [];
         const data = await response.json();
         return data.map(note => ({
