@@ -1,11 +1,68 @@
+# Site Settings
 title: kyhw.github.io
-description: My personal website
+description: My personal website and learning journal
+baseurl: "" # leave empty if hosting at username.github.io
+url: "https://kyhw.github.io" # replace with your GitHub username
+email: kyuhwan720@gmail.com
+
+# Build Settings
 theme: jekyll-theme-cayman
 plugins:
   - jekyll-feed
-  - jekyll-remote-include
+  - jekyll-paginate
+  - jekyll-sitemap
+
+# Collections Setup
+collections:
+  notes:
+    output: true
+    permalink: /notes/:name/
+    sort_by: date
+    sort_direction: reverse
+
+# Defaults
+defaults:
+  - scope:
+      path: "" # all files
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "notes"
+    values:
+      layout: "note"
+      show_in_nav: false
+
+# Exclude List
 exclude:
   - Gemfile
   - Gemfile.lock
+  - vendor
+  - .idea
+  - .vscode
+  - node_modules
+  - package.json
+  - package-lock.json
+
+# Markdown Processor
 markdown: kramdown
-include: ['_pages', 'notes']
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# SASS Processing
+sass:
+  style: compressed
+
+# Pagination (optional for future use)
+paginate: 5
+paginate_path: /notes/page:num/
+
+# Optional: Timezone (set to your local timezone)
+timezone: Asia/Seoul
+
+# Optional: Author Information
+author:
+  name: "Kyuhwan Lee"
+  github: kyhw
+  linkedin: kyuhwanl

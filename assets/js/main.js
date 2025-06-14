@@ -47,12 +47,20 @@ function loadAllNotes() {
 // Function to fetch notes from the notes directory
 async function fetchNotes() {
     try {
-        // This assumes you have a notes.json file that Jekyll will generate
-        const response = await fetch('/notes/notes.json');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return await response.json();
+        // For Jekyll collections
+        const response = await fetch('/notes.json');
+        if (!response.ok) return [];
+        const data = await response.json();
+        return data.map(note => ({
+            title: note.title,
+            date: new Date(note.date).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            }),
+            url: note.url,
+            excerpt: note.excerpt || ''
+        }));
     } catch (error) {
         console.error("Error fetching notes:", error);
         return [];

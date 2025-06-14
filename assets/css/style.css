@@ -382,3 +382,43 @@ footer p {
         align-items: center;
     }
 }
+
+/* Notes Layout */
+.note-content {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.note-meta {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.note-body {
+  line-height: 1.6;
+}
+
+/* Notes List */
+.notes-list {
+  display: grid;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.note-preview {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.note-preview:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.note-preview time {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
