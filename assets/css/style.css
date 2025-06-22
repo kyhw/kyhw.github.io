@@ -670,6 +670,7 @@ footer p {
     transition: all 0.3s ease;
     box-shadow: var(--shadow-heavy);
     z-index: 20;
+    margin-top: -120px;
 }
 
 .timeline-content::after {
@@ -712,16 +713,16 @@ footer p {
 /* Enhanced Download Section */
 .resume-download {
     text-align: center;
-    margin: 6rem 0;
-    padding: 4rem 0;
+    margin: 4rem 0;
+    padding: 2.5rem 0;
     background: rgba(37, 37, 37, 0.3);
     border-radius: 20px;
     backdrop-filter: blur(10px);
 }
 
 .resume-download h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     background: var(--accent-gradient);
     -webkit-background-clip: text;
     background-clip: text;
