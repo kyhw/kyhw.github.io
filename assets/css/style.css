@@ -575,7 +575,7 @@ footer p {
 .timeline-container {
     display: flex;
     justify-content: center;
-    margin: 12rem 0 6rem 0;
+    margin: 6rem 0 6rem 0;
     position: relative;
 }
 
@@ -661,7 +661,7 @@ footer p {
     border-radius: 16px;
     padding: 2.5rem;
     position: absolute;
-    bottom: 100px;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
     width: 320px;
@@ -669,27 +669,27 @@ footer p {
     visibility: hidden;
     transition: all 0.3s ease;
     box-shadow: var(--shadow-heavy);
-    z-index: 20;
-    margin-top: -300px;
+    z-index: 150;
+    margin-top: 2rem;
 }
 
 .timeline-content::after {
     content: '';
     position: absolute;
-    top: 100%;
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 0;
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
-    border-top: 12px solid rgba(37, 37, 37, 0.95);
+    border-bottom: 12px solid rgba(37, 37, 37, 0.95);
 }
 
 .timeline-content.show {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(-15px);
+    transform: translateX(-50%) translateY(15px);
 }
 
 .timeline-content h3 {
