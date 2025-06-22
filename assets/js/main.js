@@ -63,7 +63,7 @@ function initializeTimeline() {
         if (!circle || !content) return;
         
         // Initially hide all content
-        content.style.display = 'none';
+        content.classList.remove('show');
         
         circle.addEventListener('click', function() {
             // Close all other content
@@ -71,24 +71,19 @@ function initializeTimeline() {
                 if (otherItem !== item) {
                     const otherContent = otherItem.querySelector('.timeline-content');
                     const otherCircle = otherItem.querySelector('.timeline-circle');
-                    if (otherContent) otherContent.style.display = 'none';
+                    if (otherContent) otherContent.classList.remove('show');
                     if (otherCircle) otherCircle.classList.remove('active');
                 }
             });
             
             // Toggle current content
-            const isVisible = content.style.display === 'block';
-            content.style.display = isVisible ? 'none' : 'block';
-            circle.classList.toggle('active');
-            
-            // Add smooth animation
-            if (!isVisible) {
-                content.style.opacity = '0';
-                content.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    content.style.opacity = '1';
-                    content.style.transform = 'translateY(0)';
-                }, 10);
+            const isVisible = content.classList.contains('show');
+            if (isVisible) {
+                content.classList.remove('show');
+                circle.classList.remove('active');
+            } else {
+                content.classList.add('show');
+                circle.classList.add('active');
             }
         });
     });
