@@ -670,7 +670,7 @@ footer p {
     transition: all 0.3s ease;
     box-shadow: var(--shadow-heavy);
     z-index: 20;
-    margin-top: -120px;
+    margin-top: -200px;
 }
 
 .timeline-content::after {
@@ -838,4 +838,179 @@ footer p {
     .contact-info li:hover {
         transform: translateY(-5px);
     }
+}
+
+/* Notes Layout */
+.note-content {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    background: rgba(37, 37, 37, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(51, 51, 51, 0.5);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.note-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-gradient);
+}
+
+.note-meta {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.note-meta::before {
+    content: '📝';
+    font-size: 0.8rem;
+}
+
+.note-body {
+    line-height: 1.7;
+    color: var(--text-primary);
+    font-size: 1.05rem;
+}
+
+.note-body h1, .note-body h2, .note-body h3 {
+    color: var(--text-primary);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.note-body p {
+    margin-bottom: 1.5rem;
+}
+
+.note-body code {
+    background: var(--bg-darker);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: var(--accent-green);
+}
+
+.note-body pre {
+    background: var(--bg-darker);
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    border-left: 4px solid var(--accent-blue);
+    margin: 1.5rem 0;
+}
+
+.note-body blockquote {
+    border-left: 4px solid var(--accent-green);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* Notes List */
+.notes-list {
+    display: grid;
+    gap: 3rem;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.note-preview {
+    background: rgba(37, 37, 37, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(51, 51, 51, 0.5);
+    transition: var(--transition);
+    box-shadow: var(--shadow-light);
+}
+
+.note-preview:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--accent-blue);
+}
+
+.note-preview time {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.note-item {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    border-left: 4px solid var(--accent-blue);
+    background: rgba(37, 37, 37, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border-top: 1px solid rgba(51, 51, 51, 0.5);
+    border-right: 1px solid rgba(51, 51, 51, 0.5);
+    border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+    box-shadow: var(--shadow-light);
+}
+
+.note-item:last-child {
+    margin-bottom: 0;
+}
+
+.error {
+    color: #ff6b6b;
+    padding: 2rem;
+    text-align: center;
+    background: rgba(37, 37, 37, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid #ff6b6b;
+    margin: 2rem 0;
+}
+
+/* Note Layout */
+.note {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.note-date {
+    color: var(--text-secondary);
+    margin: 1rem 0 2rem;
+    font-size: 0.9rem;
+}
+
+.note-content {
+    line-height: 1.7;
+    color: var(--text-primary);
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--accent-blue);
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    background: rgba(74, 158, 255, 0.1);
+}
+
+.back-link:hover {
+    color: var(--accent-green);
+    background: rgba(74, 222, 128, 0.1);
+    text-decoration: none;
+    transform: translateX(-5px);
 }
