@@ -68,17 +68,15 @@ body {
 .nav-links {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    top: 0;
+    left: 120px;
     background-color: var(--card-bg);
     border-radius: 15px;
     padding: 1rem;
-    margin: 0.5rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     border: 1px solid var(--card-border);
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateX(-10px);
     transition: all 0.3s ease;
     z-index: 1000;
 }
@@ -90,7 +88,7 @@ body {
     align-items: center;
     gap: 1rem;
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
 .nav-links a {
@@ -102,7 +100,7 @@ body {
     border-radius: 8px;
     display: block;
     text-align: center;
-    flex: 1;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -182,60 +180,124 @@ body {
 
 /* Notes Section */
 .recent-notes {
-    margin: 3rem 0;
+    margin: 4rem 0;
+    padding: 2rem 0;
+}
+
+.recent-notes h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    position: relative;
+}
+
+.recent-notes h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-gradient);
+    border-radius: 2px;
 }
 
 .notes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
 }
 
 .note-card {
-    background-color: var(--card-bg);
+    background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: var(--transition);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.note-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-gradient);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
 }
 
 .note-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: var(--accent-blue);
+}
+
+.note-card:hover::before {
+    transform: scaleX(1);
 }
 
 .note-card h3 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.4;
 }
 
 .note-date {
     color: var(--text-secondary);
     font-size: 0.9rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.note-date::before {
+    content: '📅';
+    font-size: 0.8rem;
 }
 
 .note-excerpt {
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .read-more {
     color: var(--accent-blue);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: linear-gradient(45deg, transparent, transparent);
+    border: 2px solid transparent;
 }
 
 .read-more:hover {
     color: var(--accent-green);
+    background: linear-gradient(45deg, rgba(74, 158, 255, 0.1), rgba(74, 222, 128, 0.1));
+    border-color: var(--accent-green);
+    transform: translateX(5px);
 }
 
 .read-more i {
-    margin-left: 5px;
-    transition: var(--transition);
+    transition: transform 0.3s ease;
 }
 
 .read-more:hover i {
@@ -456,15 +518,77 @@ footer p {
   max-width: 800px;
   margin: 2rem auto;
   padding: 0 1rem;
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.note-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent-gradient);
 }
 
 .note-meta {
   color: var(--text-secondary);
   margin-bottom: 2rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.note-meta::before {
+  content: '📝';
+  font-size: 0.8rem;
 }
 
 .note-body {
-  line-height: 1.6;
+  line-height: 1.7;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+}
+
+.note-body h1, .note-body h2, .note-body h3 {
+  color: var(--text-primary);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.note-body p {
+  margin-bottom: 1.5rem;
+}
+
+.note-body code {
+  background: var(--bg-darker);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  color: var(--accent-green);
+}
+
+.note-body pre {
+  background: var(--bg-darker);
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  border-left: 4px solid var(--accent-blue);
+  margin: 1.5rem 0;
+}
+
+.note-body blockquote {
+  border-left: 4px solid var(--accent-green);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--text-secondary);
 }
 
 /* Notes List */
@@ -477,13 +601,15 @@ footer p {
 .note-preview {
   background: var(--card-bg);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
   transition: var(--transition);
 }
 
 .note-preview:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  border-color: var(--accent-blue);
 }
 
 .note-preview time {
@@ -493,14 +619,22 @@ footer p {
 
 .note-item {
   margin-bottom: 2rem;
-  padding: 1rem;
-  border-left: 3px solid var(--accent-blue);
+  padding: 1.5rem;
+  border-left: 4px solid var(--accent-blue);
+  background: var(--card-bg);
+  border-radius: 8px;
+  border-top: 1px solid var(--card-border);
+  border-right: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .error {
   color: #ff6b6b;
   padding: 2rem;
   text-align: center;
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid #ff6b6b;
 }
 
 /* Note Layout */
@@ -513,10 +647,12 @@ footer p {
 .note-date {
   color: var(--text-secondary);
   margin: 1rem 0 2rem;
+  font-size: 0.9rem;
 }
 
 .note-content {
   line-height: 1.7;
+  color: var(--text-primary);
 }
 
 .back-link {
@@ -524,11 +660,15 @@ footer p {
   margin-top: 2rem;
   color: var(--accent-blue);
   text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: var(--transition);
 }
 
 .back-link:hover {
   color: var(--accent-green);
-  text-decoration: underline;
+  background: var(--bg-darker);
+  text-decoration: none;
 }
 
 /* Recent Notes Section */
