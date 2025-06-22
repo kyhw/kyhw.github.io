@@ -4,18 +4,19 @@ title: My Learning Notes
 permalink: /notes/
 ---
 
-<h1>{{ page.title }}</h1>
+<h1 class="page-title">{{ page.title }}</h1>
 
 <div class="notes-list">
   {% for note in site.notes reversed %}
-    <article class="note-card">
+    <article class="note-preview">
+      <time datetime="{{ note.date }}">{{ note.date | date: "%B %d, %Y" }}</time>
       <h2><a href="{{ note.url }}">{{ note.title }}</a></h2>
-      <div class="note-date">
-        {{ note.date | date: "%B %d, %Y" }}
-      </div>
       <div class="note-excerpt">
-        {{ note.content | strip_html | truncatewords: 30 }}
+        {{ note.content | strip_html | truncatewords: 50 }}
       </div>
+      <a href="{{ note.url }}" class="read-more">
+        Read more <i class="fas fa-arrow-right"></i>
+      </a>
     </article>
   {% endfor %}
 </div>
